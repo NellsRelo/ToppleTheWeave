@@ -1,5 +1,5 @@
 # Topple the Weave
-[![GitHub release](https://img.shields.io/github/v/tag/BG3-Community-Library-Team/BG3-Subclass-Compatibility-Framework?label=Latest%20Version)](https://GitHub.com/BG3-Community-Library-Team/BG3-Subclass-Compatibility-Framework/releases/) [![GitHub commits](https://img.shields.io/github/commits-since/BG3-Community-Library-Team/BG3-Subclass-Compatibility-Framework/2.5.0/main)](https://GitHub.com/BG3-Community-Library-Team/BG3-Subclass-Compatibility-Framework/commit/)
+[![GitHub release](https://img.shields.io/github/v/tag/NellsRelo/ToppleTheWeave?label=Latest%20Version)](https://GitHub.com/NellsRelo/ToppleTheWeave/releases/) [![GitHub commits](https://img.shields.io/github/commits-since/NellsRelo/ToppleTheWeave/1.0.0/main)](https://GitHub.com/NellsRelo/ToppleTheWeave/commit/)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/O5O8PG8RF)
 
