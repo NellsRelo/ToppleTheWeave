@@ -9,3 +9,13 @@ end
 function Utils.Warn(message)
   Ext.Utils.PrintWarning(Strings.WARN_TAG .. message)
 end
+
+function Utils.InsertToTable(arr, entry, count)
+  for i = 1, count do
+    table.insert(arr, entry)
+  end
+end
+
+function Utils.IsVoloDead()
+  return Globals.Vars.IsVoloDead or false
+end

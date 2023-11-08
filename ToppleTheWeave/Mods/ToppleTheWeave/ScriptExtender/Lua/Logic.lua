@@ -1,12 +1,55 @@
-local volo = "S_GLO_Volo_2af25a85-5b9a-4794-85d3-0bd4c4d262fa"
+function ShiftPersistentVarToModVar(varName)
+  if PersistentVars[varName] ~= nil then
+    Globals.Vars[varName] = PersistentVars[varName]
+    PersistentVars[varName] = nil
+  end
+end
 
-function IsVoloDead()
-  return PersistentVars['IsVoloDead'] or false
+function DestabilizingWeave(caster, spell)
+  local IsVolatile = Ext.Math.Random(0, 4)
+  if IsVolatile == 1 then
+    local effectIdx = Ext.math.Random(0, 120)
+    _P("Volatile effect! Rolling a " .. effectIdx)
+    if effectIdx <= 5 then Osi.RemoveSpell(caster, spell) end
+    if effectIdx > 5 and effectIdx <= 15 then
+      Osi.CreateProjectileStrikeAt(caster,
+        Globals.Projectiles[Ext.Math.Random(1, #Globals.Projectiles)])
+    end
+    if effectIdx > 15 and effectIdx <= 25 then
+      Osi.CreateExplosionAt(caster,
+        Globals.Explosions[Ext.Math.Random(1, #Globals.Explosions)], Ext.Math.Random(1, 6))
+    end
+    if effectIdx > 25 and effectIdx <= 35 then
+      Osi.ApplyStatus(caster,
+        Globals.Statuses[Ext.Math.Random(1, #Globals.Statuses)], Ext.Math.Random(1, 8))
+    end
+    if effectIdx > 35 and effectIdx <= 45 then Osi.RemoveSummons(caster, 0) end
+    if effectIdx > 45 and effectIdx <= 50 then Osi.ResetCooldowns(caster) end
+    if effectIdx > 50 and effectIdx <= 60 then Osi.Unequip(caster, Osi.GetEquippedWeapon(caster)) end
+    if effectIdx > 60 and effectIdx <= 70 then
+      Osi.CreatePuddle(caster,
+        Globals.Puddles[Ext.Math.Random(1, #Globals.Puddles)], Ext.Math.Random(0, 4), Ext.Math.Random(4, 12),
+        Ext.Math.Random(0, 4), Ext.Math.Random(0, 4), Ext.Math.Random(0, 30), Ext.Math.Random(0, 10000))
+    end
+    if effectIdx > 70 and effectIdx <= 80 then
+      Osi.CreateSurface(caster,
+        Globals.Puddles[Ext.Math.Random(1, #Globals.Puddles)], Ext.Math.Random(0, 4), Ext.Math.Random(4, 12),
+        Ext.Math.Random(0, 4), Ext.Math.Random(4, 12), Ext.Math.Random(0, 100))
+    end
+    if effectIdx > 80 and effectIdx <= 85 then Osi.EndTurn(caster) end
+    if effectIdx > 85 and effectIdx <= 85 then Osi.PartyAddGold(caster, Ext.Math.Random(-100, 1000)) end
+    if effectIdx > 115 and effectIdx <= 119 then Osi.RemoveAllTadpolePowers(caster) end
+    if effectIdx == 120 then Osi.Die(caster) end
+  end
 end
 
 function OnSessionLoaded()
+  Ext.Vars.RegisterModVariable(ToppleTheWeave.UUID, "IsVoloDead", {
+    Server = false, Client = false, SyncToClient = true
+  })
   Utils.Info(Strings.INFO_MOD_LOADED)
-  if not IsVoloDead() then
+  ShiftPersistentVarToModVar('IsVoloDead')
+  if not Utils.IsVoloDead() then
     Utils.Info(Strings.INFO_MOD_LOADED_ALIVE)
   else
     Utils.Info(Strings.INFO_MOD_LOADED_DEAD)
@@ -14,9 +57,9 @@ function OnSessionLoaded()
 end
 
 Ext.Osiris.RegisterListener("Died", 1, "after", function(char)
-  if char == volo then
+  if char == Globals.volo then
     Utils.Info(Strings.INFO_VOLO_IS_NOW_DEAD)
-    PersistentVars['IsVoloDead'] = true
+    Globals.Vars.IsVoloDead = true
     Osi.OpenMessageBox(GetHostCharacter(), Strings.INFO_VOLO_IS_NOW_DEAD)
   end
 end)
@@ -25,27 +68,10 @@ Ext.Osiris.RegisterListener("CastSpell", 5, "after", function(caster, spell, _, 
   if IsVoloDead() then
     if Osi.IsCharacter(caster) == 1 and Osi.HasPassive(caster, "TTW_WildMagic_UnstableWeave") == 0 then
       Osi.AddPassive(caster, "TTW_WildMagic_UnstableWeave")
+    elseif Osi.HasPassive(caster, "TTW_WildMagic_UnstableWeave") == 1 then
+      DestabilizingWeave(caster, spell)
     end
   end
 end)
 
 Ext.Events.SessionLoaded:Subscribe(OnSessionLoaded)
-
---[[
-      elseif Osi.HasPassive(caster, "TTW_WildMagic_UnstableWeave") == 1 then
-      local random = Ext.Math.Random(0, 1000)
-      if random <= 5 then Osi.RemoveSpell(caster, spell) end
-      if random > 5 and random <= 25 then Osi.CreateProjectileStrikeAt(caster, "Projectile_Fireball") end
-      if random > 25 and random <= 45 then Osi.RemoveSummons(caster, 0) end
-      if random > 45 and random <= 90 then Osi.ResetCooldowns(caster) end
-      if random > 90 and random <= 130 then Osi.Unequip(caster, Osi.GetEquippedWeapon(caster)) end
-      if random > 130 and random <= 180 then Osi.CreatePuddle(caster, "DarknessCloud", 4, 12, 2, 20, 100) end
-      if random > 180 and random <= 230 then Osi.CreatePuddle(caster, "FireCloud", 3, 6, 0, 2, 100) end
-      if random > 230 and random <= 380 then Osi.CreatePuddle(caster, "Fire", 4, 20, 6, 9, 100) end
-      if random > 330 and random <= 381 then Osi.Die(caster) end
-      if random > 880 and random <= 990 then Osi.CreateProjectileStrikeAt(caster, "Projectile_Fireball") end
-      if random > 990 and random <= 995 then Osi.RemoveAllTadpolePowers(caster) end
-      if random > 995 and random <= 1000 then Osi.PartyAddGold(caster, Ext.Math.Random(1, 1000)) end
-    end
-]]
-   --
