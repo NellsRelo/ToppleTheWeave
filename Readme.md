@@ -8,7 +8,23 @@ Volothamp Geddarm is timeless. Literally. After the Spellplague, Mystra and Elmi
 
 Mechanically speaking, if Volo dies, **anyone** who casts a spell will be inflicted with a variation of Wild Magic, which will proc 100% of the time. This mod is compatible with mods that add to the Wild Magic table, and is best enjoyed with as many possibilities as possible. 
 
-In the future, additional surprise effects may happen as well.
+In addition, you have a high chance of one of the following occurring:
+
+- The damage type for a spell that deals damage may permanently change (not reflected in tooltip)
+- Money (between 1 and 1000) appears in your bag
+- Money (up to 100) is removed from your bag
+- Your turn immediately ends
+- Your equipped item is unequipped
+- You are affected by a Random Status
+- A Random Projectile spell fires upon you
+- An Random Explosion occurs, centered on you
+- Your character immediately dies
+- All your cooldowns are reset
+- A Random Surface is created under your feet
+- A Random Pool Surface is created under your feet
+- Your Tadpole Powers are lost
+- You forget the spell you cast
+- All your summons are dispelled
 
 ## Installation
 This mod works with [Baldur's Gate 3 Mod Manager](https://github.com/LaughingLeader/BG3ModManager), and possibly Vortex and Manual Installations. BG3 Mod Managers is by far the simplest method, and as such is recommended one.

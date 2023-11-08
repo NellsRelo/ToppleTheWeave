@@ -17,5 +17,6 @@ function Utils.InsertToTable(arr, entry, count)
 end
 
 function Utils.IsVoloDead()
-  return Globals.Vars.IsVoloDead or false
+  return PersistentVars['IsVoloDead'] or false
+  --return Globals.Vars.IsVoloDead or false
 end

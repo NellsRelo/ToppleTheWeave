@@ -1,15 +1,15 @@
 Globals.volo = "S_GLO_Volo_2af25a85-5b9a-4794-85d3-0bd4c4d262fa"
-Globals.UnstableWeaveTable = {}
-Globals.Vars = Ext.Vars.GetModVariables(ToppleTheWeave.UUID)
+-- Globals.Vars = Ext.Vars.GetModVariables(ToppleTheWeave.UUID)
 
-Ext.Vars.RegisterModVariable(ToppleTheWeave.UUID, "IsVoloDead", {
-  Server = true, Client = false, SyncToClient = false
-})
+--Ext.Vars.RegisterModVariable(ToppleTheWeave.UUID, "IsVoloDead", {
+--  Server = true, Client = false, SyncToClient = false
+--})
 
 Globals.Projectiles = {}
 Globals.Puddles = {}
 Globals.Explosions = {}
 Globals.Statuses = {}
+Globals.DamageTypes = {}
 
 table.insert(Globals.Projectiles, "Projectile_Fireball")
 table.insert(Globals.Projectiles, "Projectile_FingerOfDeath_Apostle")
@@ -44,6 +44,7 @@ table.insert(Globals.Projectiles, "Projectile_ScorchingRay_4")
 table.insert(Globals.Projectiles, "Projectile_ArrowOfAntimagic")
 table.insert(Globals.Projectiles, "Projectile_Fireball")
 table.insert(Globals.Projectiles, "Projectile_Fireball_4")
+
 table.insert(Globals.Puddles, "PotionHealingSupremeCloud")
 table.insert(Globals.Puddles, "DarknessCloud")
 table.insert(Globals.Puddles, "PotionHealingSuperiorCloud")
@@ -114,6 +115,7 @@ table.insert(Globals.Puddles, "PotionResistancePoisonCloud")
 table.insert(Globals.Puddles, "CausticBrine")
 table.insert(Globals.Puddles, "BlackTentacles")
 table.insert(Globals.Puddles, "BlackRain")
+
 table.insert(Globals.Explosions, "Projectile_MAG_ChargedLightning_EnsnaringShock_Explosion")
 table.insert(Globals.Explosions, "Projectile_UND_Runepowder_Barrel_Explosion")
 table.insert(Globals.Explosions, "Projectile_UND_Runepowder_Vial_Explosion")
@@ -148,6 +150,7 @@ table.insert(Globals.Explosions, "Projectile_WildMagic_Heal_4")
 table.insert(Globals.Explosions, "Projectile_WildMagic_Heal_3")
 table.insert(Globals.Explosions, "Projectile_ClarifiedMortality")
 table.insert(Globals.Explosions, "Projectile_MagicAllergy_Unstable")
+
 table.insert(Globals.Statuses, "TAD_DISPLACER_BEAST")
 table.insert(Globals.Statuses, "POLYMORPH_SHEEP")
 table.insert(Globals.Statuses, "WILDSHAPE_SABERTOOTH_TIGER_PLAYER")
@@ -290,3 +293,14 @@ table.insert(Globals.Statuses, "TIDES_OF_CHAOS")
 table.insert(Globals.Statuses, "BIBBERBANG_FUMES")
 table.insert(Globals.Statuses, "TIMMASK_SPORES")
 table.insert(Globals.Statuses, "TONGUE_OF_MADNESS")
+
+table.insert(Globals.DamageTypes, "Force")
+table.insert(Globals.DamageTypes, "Fire")
+table.insert(Globals.DamageTypes, "Necrotic")
+table.insert(Globals.DamageTypes, "Cold")
+table.insert(Globals.DamageTypes, "Thunder")
+table.insert(Globals.DamageTypes, "Acid")
+table.insert(Globals.DamageTypes, "Poison")
+table.insert(Globals.DamageTypes, "Radiant")
+table.insert(Globals.DamageTypes, "Psychic")
+table.insert(Globals.DamageTypes, "Lightning")
